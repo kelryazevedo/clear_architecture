@@ -4,25 +4,26 @@ import 'package:clear_architecture/modules/search/infra/models/result_search_mod
 import 'package:dio/dio.dart';
 
 extension on String {
-  normalize(){
+  normalize() {
     return this.replaceAll(" ", "+");
   }
 }
 
-class GithubDataSource implements SearchDataSource{
+class GithubDataSource implements SearchDataSource {
   final Dio dio;
 
   GithubDataSource(this.dio);
 
   @override
   Future<List<ResultSearchModel>> getSearch(String searchText) async {
-    final response= await dio.get("https://api.github.com/search/users?q=${searchText.normalize()}");
-    if(response.statusCode==200)
-      {
-        final list = (response.data['items'] as List);
-        var _response=  list.map((i) => ResultSearchModel.map(i)).toList();
-        return _response;
-      }else{
+    final response = await dio
+        .get("https://api.github.com/search/users?q=${searchText.normalize()}");
+    if (response.statusCode == 200) {
+      final list = (response.data['items'] as List)
+          .map((i) => ResultSearchModel.map(i))
+          .toList();
+      return list;
+    } else {
       throw DataSourceError();
     }
   }

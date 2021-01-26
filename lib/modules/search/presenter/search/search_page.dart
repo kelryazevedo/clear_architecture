@@ -41,13 +41,16 @@ class _SearchPageState extends State<SearchPage> {
                   final state = bloc.state;
                   if (state is SearchStart) {
                     return Center(
-                      child: Text('Digite um texto'),
+                      child: Text(
+                        'Type a text...',
+                        style: TextStyle(color: Colors.grey),
+                      ),
                     );
                   }
                   if (state is SearchError) {
                     return Center(
-                      child: Text('Houve um erro'),
-                    );
+                        child: Text('Type a text...',
+                            style: TextStyle(color: Colors.grey)));
                   }
                   if (state is SearchLoading) {
                     return Center(
@@ -64,7 +67,8 @@ class _SearchPageState extends State<SearchPage> {
                           leading: item.avatar_url == null
                               ? Container()
                               : CircleAvatar(
-                                  backgroundImage: NetworkImage(item.avatar_url),
+                                  backgroundImage:
+                                      NetworkImage(item.avatar_url),
                                 ),
                           title: Text(item.login ?? ""),
                           subtitle: Text(item.id.toString() ?? ""),

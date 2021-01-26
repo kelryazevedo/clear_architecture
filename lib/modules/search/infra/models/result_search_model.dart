@@ -5,7 +5,6 @@ class ResultSearchModel extends ResultSearch {
   num id;
   String avatar_url;
 
-
   ResultSearchModel(this.login, this.id, this.avatar_url);
 
   ResultSearchModel.map(Map<String, dynamic> json) {

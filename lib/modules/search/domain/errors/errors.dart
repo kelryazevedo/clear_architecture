@@ -2,7 +2,7 @@ abstract class FailureSearch implements Exception{}
 
 class InvalidTextError implements FailureSearch {}
 
-// posso personalizar os erros, coloando mensagens por exemplo
+// forma de personalizar erros de acordo com a necessidade.
 class DataSourceError implements FailureSearch {
   final String message;
   DataSourceError({this.message});

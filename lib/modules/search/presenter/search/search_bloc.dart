@@ -4,7 +4,7 @@ import 'package:clear_architecture/modules/search/presenter/search/states/state.
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
-//passa como parametro a entrada no método e depois o retorno dele/ estado dele
+//passa como parametro a entrada do método e depois o estado dele
 class SearchBlock extends Bloc<String, SearchState> {
   final SearchByText usecase;
 
@@ -17,7 +17,7 @@ class SearchBlock extends Bloc<String, SearchState> {
     yield result.fold((l) => SearchError(l), (r) => SearchSuccess(r));
   }
 
-  // esse cara aqui faz um intervalo entre as chamadas no back enquanto é digitada cada letra saca
+  // esse cara aqui faz um intervalo entre as chamadas no back enquanto é digitada cada letra para diminuir bind.
   @override
   Stream<Transition<String, SearchState>> transformEvents(Stream<String> events,TransitionFunction<String, SearchState> transitionFn) {
       return super.transformEvents(events.debounceTime(Duration(milliseconds: 800)),transitionFn);

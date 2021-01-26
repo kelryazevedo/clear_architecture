@@ -17,13 +17,13 @@ main() {
     // quando o meu datasourch com algum texto retornar (o que ele fará thenAnsewerr) vai retornar um Future do tipo List...
     when(datasource.getSearch(any))
         .thenAnswer((_) async => <ResultSearchModel>[]);
-    final result = await repository.search("kelry");
+    final result = await repository.search("searchText");
     expect(result | null, isA<List<ResultSearch>>());
   });
 
   test('Deve retornar um erro se o datasource falhar', () async {
     when(datasource.getSearch(any)).thenThrow(Exception());
-    final result = await repository.search("kelry");
+    final result = await repository.search("searchText");
     expect(result.fold(id,id),isA<DataSourceError>());
   });
 }

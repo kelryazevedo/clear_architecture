@@ -14,21 +14,21 @@ main() {
 
   final bloc = SearchBlock(usecase);
   test('Deve retornar os estados na ordem correta', () {
-    when(usecase("jacob")).thenAnswer((_) async =>Right(<ResultSearch>[]));
+    when(usecase("searchText")).thenAnswer((_) async =>Right(<ResultSearch>[]));
     expect(bloc, emitsInOrder([
       isA<SearchLoading>(),
       isA<SearchSuccess>()
     ]));
-    bloc.add("jacob");
+    bloc.add("searchText");
   });
 
   test('Deve retornar erro', () {
-    when(usecase("jacob")).thenAnswer((_) async =>Left(InvalidTextError()));
+    when(usecase("searchText")).thenAnswer((_) async =>Left(InvalidTextError()));
     expect(bloc, emitsInOrder([
       isA<SearchLoading>(),
       isA<SearchError>()
     ]));
-    bloc.add("jacob");
+    bloc.add("searchText");
   });
 
 }

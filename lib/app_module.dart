@@ -13,6 +13,8 @@ class AppModule extends MainModule{
 
   @override
   List<Bind> get binds => [
+    // dependency injection
+
     Bind((i) => Dio()),
     Bind((i) => SearchByTextImpl(i())),
     Bind((i) => GithubDataSource(i())),

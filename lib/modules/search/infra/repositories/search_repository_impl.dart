@@ -15,10 +15,10 @@ class SearchRepositoryImpl implements SearchRepository {
     try {
       final result = await datasource.getSearch(searchText);
       return Right(result);
-    } on DataSourceError catch (error) { // o erro que o cara vá querer tratar
+    } on DataSourceError catch (error) { // o erro que o cara vá querer tratar de forma especifica
       return Left(error);
     } catch (e) {
-      return Left(DataSourceError());// se for um erro desconhecido ele retorna
+      return Left(DataSourceError());// se for um erro desconhecido
     }
   }
 }

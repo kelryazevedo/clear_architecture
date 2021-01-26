@@ -19,7 +19,7 @@ main() {
   test('Deve retornar uma lista de ResultSearch', () async {
     when(repository.search(any)).thenAnswer((_) async => Right(<ResultSearch>[]));
     //usecase("searchText"); como já temos o call no "contrato" não precisa usar "usecase.call"
-    final result = await usecase("kelry");
+    final result = await usecase("searchText");
     expect(result, isA<Right>()); //o que eu espero e o que eu passo como parametro
     // Como estamos usando o Either, a gente tem dois parametros, um da direita e outro da esquerda, um excpetion e um ok certo?
     // pra isso utilizamos o isA<Qual eu espero>();
